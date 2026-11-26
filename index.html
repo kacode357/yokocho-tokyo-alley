@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YOKOCHO — Rainy Tokyo Back-Alley (Three.js)</title>
+    <script type="module" crossorigin src="./assets/index-C5tJWhxv.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BcCbtkBg.css">
+  </head>
+  <body>
+    <div id="viewport">
+      <canvas id="c"></canvas>
+
+      <!-- First-Person Reticle & Interaction Prompt -->
+      <div id="reticle" class="hidden" aria-hidden="true"></div>
+      <div id="interact-prompt" class="hidden" aria-live="polite"></div>
+
+      <!-- Atmospheric Start / Mode Overlay -->
+      <div id="start-overlay">
+        <div class="start-card">
+          <div class="start-eyebrow">02:14 AM · SHINJUKU BACK-ALLEY · PROCEDURAL THREE.JS</div>
+          <h1>YOKOCHO</h1>
+          <p class="start-sub">
+            A rainy Tokyo back-alley rendered purely in procedural Three.js — raindrop-rippled
+            asphalt, warm izakaya lanterns, steam vents, and interactive storefronts.
+          </p>
+          <div id="load-status" class="load-status">
+            <div class="load-row">
+              <span id="load-label">Initializing WebGL...</span>
+              <span id="load-pct">0%</span>
+            </div>
+            <div class="load-bar-track">
+              <div id="load-bar-fill" class="load-bar-fill"></div>
+            </div>
+          </div>
+          <div class="start-actions">
+            <button id="btn-explore" type="button" class="primary" disabled>Explore Alley (First-Person)</button>
+            <button id="btn-autoclip" type="button" disabled>Watch Cinematic Walk (28s)</button>
+          </div>
+          <div class="start-keys">
+            <span><kbd>WASD</kbd> Move</span>
+            <span><kbd>Mouse</kbd> Look</span>
+            <span><kbd>Shift</kbd> Sprint</span>
+            <span><kbd>C</kbd> Crouch</span>
+            <span><kbd>F</kbd> / RMB Flashlight</span>
+            <span><kbd>E</kbd> Interact</span>
+            <span><kbd>ESC</kbd> Menu</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clean Monochrome Cinema Camera HUD -->
+      <div id="hud" aria-hidden="true">
+        <div class="hud-corner hud-tl">
+          <div>CAM 01 / SHINJUKU YOKOCHO</div>
+          <div class="hud-dim" id="hud-flash">FLASH: OFF</div>
+        </div>
+
+        <div class="hud-corner hud-tr">
+          <div class="rec-row">
+            <span class="rec-dot" id="rec-dot"></span>
+            <span>REC</span>
+          </div>
+          <div id="hud-clock">2026-11-26 02:14:00</div>
+          <div class="hud-dim" id="hud-zone-label">ALLEY ENTRANCE</div>
+        </div>
+
+        <div class="hud-corner hud-bl">
+          <div class="hud-dim">24MM F/1.8 · ISO 800 · <span id="hud-fps">-- FPS</span></div>
+        </div>
+
+        <div class="hud-corner hud-br">
+          <div class="vu-row">
+            <span class="vu-label">L</span>
+            <div class="vu-bars" id="vu-left"></div>
+          </div>
+          <div class="vu-row">
+            <span class="vu-label">R</span>
+            <div class="vu-bars" id="vu-right"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subtle Auto-Fading Controls Bar (Cinematic Walk Mode) -->
+      <div id="controls">
+        <div class="controls-top">
+          <button id="btn-play" type="button" title="Space: Play/Pause">Pause</button>
+          <input id="timeline" type="range" min="0" max="28" step="0.05" value="0" />
+          <span id="time-readout">00.0 / 28.0s</span>
+          <button id="btn-cam" type="button" title="Switch to Playable FPS">Explore FPS</button>
+          <button id="btn-audio" type="button" title="M: Toggle Rain Audio">Audio: Off</button>
+          <button id="btn-record" type="button" title="Record 28s WebM Clip">Record Clip</button>
+        </div>
+        <div class="controls-jumps">
+          <button type="button" data-jump="0.5">Entrance</button>
+          <button type="button" data-jump="6.0">Ramen Shop</button>
+          <button type="button" data-jump="12.5">Neon Alley</button>
+          <button type="button" data-jump="15.0">Vending</button>
+          <button type="button" data-jump="19.0">Steam Vent</button>
+          <button type="button" data-jump="24.5">Intersection</button>
+          <span class="hint">Space: Play/Pause · M: Audio · H: Hide UI</span>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
